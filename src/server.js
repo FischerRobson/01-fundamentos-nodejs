@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { randomUUID } from 'node:crypto'
 import { json } from './middlewares/json.js';
 import { Database } from './database.js'
 
@@ -16,6 +17,7 @@ const server = http.createServer(async (req, res) => {
 
   if (method === 'POST') {
     database.insert('users', {
+      id: randomUUID(),
       name: req.body.name,
       email: req.body.email
     })
